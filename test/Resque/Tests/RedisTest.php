@@ -20,7 +20,7 @@ class Resque_Tests_RedisTest extends Resque_Tests_TestCase
 			->will($this->throwException(new CredisException('failure')));
 
 		Resque::setBackend(function($database) use ($mockCredis) {
-			return new Resque_Redis('localhost:6379', $database, $mockCredis);
+			return new Resque_Redis('redis:6379', $database, $mockCredis);
 		});
 		Resque::redis()->ping();
 	}

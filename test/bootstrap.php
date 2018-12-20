@@ -14,6 +14,7 @@ define('TEST_MISC', realpath(__DIR__ . '/misc/'));
 define('REDIS_CONF', TEST_MISC . '/redis.conf');
 
 // Attempt to start our own redis instance for tesitng.
+/*
 exec('which redis-server', $output, $returnVar);
 if($returnVar != 0) {
 	echo "Cannot find redis-server in path. Please make sure redis is installed.\n";
@@ -33,9 +34,9 @@ $config = file_get_contents(REDIS_CONF);
 if(!preg_match('#^\s*port\s+([0-9]+)#m', $config, $matches)) {
 	echo "Could not determine redis port from redis.conf";
 	exit(1);
-}
+}*/
 
-Resque::setBackend('localhost:' . $matches[1]);
+Resque::setBackend('redis:6379');
 
 // Shutdown
 function killRedis($pid)

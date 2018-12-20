@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  php:
+    build: .
+    volumes:
+      - .:/php-resque
+    working_dir: "/php-resque"
+    depends_on:
+      - "redis"
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["sleep infinity"]
+
+
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
